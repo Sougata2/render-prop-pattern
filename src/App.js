@@ -28,12 +28,12 @@ function ProductItem({ item }) {
   );
 }
 
-function CompanyItem({ item }) {
+function CompanyItem({ item, defaultVisibility }) {
   return (
     <>
       <li className="company">
         <p className="company-name">{item.companyName}</p>
-        <p className="company-phrase">{item.phrase}</p>
+        {defaultVisibility && <p className="company-phrase">{item.phrase}</p>}
       </li>
     </>
   );
@@ -72,7 +72,9 @@ function App() {
       <List
         title={"company"}
         items={companies}
-        render={(item, i) => <CompanyItem key={i} item={item} />}
+        render={(item, i) => (
+          <CompanyItem key={i} item={item} defaultVisibility={false} />
+        )}
       />
     </main>
   );
